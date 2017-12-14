@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<typeAliases>
+		<typeAlias alias="hashMap" type="java.util.HashMap"/>
+		<typeAlias alias="FormalAttendUserInfo" type="com.shanghai.changning.vo.FormalAttendUserInfo"/>
+		<typeAlias alias="SundayAttendInfo" type="com.shanghai.changning.vo.SundayAttendInfo" />
+	</typeAliases>
+	
+    <!-- <plugins>
+        <plugin interceptor="com.lvmama.tnt.comm.mybatis.plugin.OffsetLimitInterceptor">
+            <property name="dialectClass" value="com.lvmama.tnt.comm.mybatis.dialect.OracleDialect" />
+        </plugin>
+        <plugin interceptor="com.lvmama.ibatis.plugin.UpdateInterceptor"></plugin>
+    </plugins> -->
+	<!-- <mappers>
+		<mapper resource="mysqlPage_sql.xml" />
+	</mappers> -->
+</configuration>
+

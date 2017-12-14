@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shanghai.changning.mapper.SundayAttendInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.shanghai.changning.vo.SundayAttendInfo" >
+    <id column="INFO_ID" property="infoId" jdbcType="INTEGER" />
+    <result column="ATTEND_DATE" property="attendDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="ATTEND_USERS" property="attendUsers" jdbcType="VARCHAR" />
+    <result column="IS_DELETED" property="isDeleted" jdbcType="INTEGER" />
+    <result column="SUBJECT" property="subject" jdbcType="VARCHAR" />
+    <result column="PREACH_PRIEST" property="preachPriest" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    INFO_ID, ATTEND_DATE, CREATE_BY, CREATE_DATE, ATTEND_USERS, IS_DELETED, SUBJECT, 
+    PREACH_PRIEST
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sunday_attend_info
+    where INFO_ID = #{infoId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByCondition" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sunday_attend_info
+    <where>
+      <if test="infoId!=null">
+        INFO_ID = #{infoId,jdbcType=INTEGER}
+      </if>
+      <if test="attendDate != null" >
+        AND ATTEND_DATE = #{attendDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="createBy != null" >
+        AND CREATE_BY = #{createBy,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null" >
+        AND CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="attendUsers != null" >
+        AND ATTEND_USERS = #{attendUsers,jdbcType=VARCHAR}
+      </if>
+      <if test="subject != null" >
+        AND SUBJECT = #{subject,jdbcType=VARCHAR}
+      </if>
+      <if test="preachPriest != null" >
+        AND PREACH_PRIEST = #{preachPriest,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sunday_attend_info
+    where INFO_ID = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.shanghai.changning.vo.SundayAttendInfo" >
+    insert into sunday_attend_info (ATTEND_DATE, CREATE_BY,
+      CREATE_DATE, ATTEND_USERS, IS_DELETED, 
+      SUBJECT, PREACH_PRIEST)
+    values (#{attendDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{attendUsers,jdbcType=VARCHAR}, #{isDeleted,jdbcType=INTEGER}, 
+      #{subject,jdbcType=VARCHAR}, #{preachPriest,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shanghai.changning.vo.SundayAttendInfo" >
+    insert into sunday_attend_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        INFO_ID,
+      </if>
+      <if test="attendDate != null" >
+        ATTEND_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="attendUsers != null" >
+        ATTEND_USERS,
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED,
+      </if>
+      <if test="subject != null" >
+        SUBJECT,
+      </if>
+      <if test="preachPriest != null" >
+        PREACH_PRIEST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="attendDate != null" >
+        #{attendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendUsers != null" >
+        #{attendUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="preachPriest != null" >
+        #{preachPriest,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shanghai.changning.vo.SundayAttendInfo" >
+    update sunday_attend_info
+    <set >
+      <if test="attendDate != null" >
+        ATTEND_DATE = #{attendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendUsers != null" >
+        ATTEND_USERS = #{attendUsers,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED = #{isDeleted,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null" >
+        SUBJECT = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="preachPriest != null" >
+        PREACH_PRIEST = #{preachPriest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where INFO_ID = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shanghai.changning.vo.SundayAttendInfo" >
+    update sunday_attend_info
+    set ATTEND_DATE = #{attendDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      ATTEND_USERS = #{attendUsers,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=INTEGER},
+      SUBJECT = #{subject,jdbcType=VARCHAR},
+      PREACH_PRIEST = #{preachPriest,jdbcType=VARCHAR}
+    where INFO_ID = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>
